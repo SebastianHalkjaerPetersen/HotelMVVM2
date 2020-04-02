@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="HotelMVVM.View.HotelPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HotelMVVM.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:HotelMVVM.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewModel:HotelViewModel></viewModel:HotelViewModel></Page.DataContext>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text=" hoteller"></TextBlock>
+            <ListView ItemsSource="{Binding HotelCatalogSingleton.Hotels}" SelectedItem="{Binding NewHotel, Mode=TwoWay}"></ListView>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" MinWidth="250">
+            <TextBox Text="{Binding NewHotel.Name, Mode=TwoWay}"></TextBox>
+            <TextBox Text="{Binding NewHotel.ID, Mode= TwoWay}"></TextBox>
+            <TextBox Text="{Binding NewHotel.Address, Mode=TwoWay}"></TextBox>
+
+            <StackPanel Orientation="Horizontal" Spacing="20 ">
+                <Button Content="Create" Command="{Binding CreateHotelCommand}"></Button>
+                <Button Content="Delete" Command="{Binding DeleteHotelCommand}"></Button>
+                <Button Content="Clear" Command="{Binding ClearCommand}"></Button>
+            </StackPanel>
+            <TextBlock Text="type in ID of the hotel to update"></TextBlock>
+            <StackPanel Orientation="Horizontal" Spacing="50">
+                <TextBox Text="{Binding UpdateID, Mode=TwoWay}" PlaceholderText=""></TextBox>
+                <Button Content="Update" Command="{Binding UpdateHotelCommand}"></Button>
+            </StackPanel>
+        </StackPanel>
+        <Button Content="Gæster" Click="ButtonBase_OnClick"></Button>
+    </StackPanel>
+</Page>
